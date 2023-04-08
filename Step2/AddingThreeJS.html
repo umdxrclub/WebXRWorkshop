@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XR Club WebXR Tutorial</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #000;
+        }
+
+        /* Style the canvas display */
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+        // Import three.js
+        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+        // Import the default VRButton
+        import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
+
+        let renderer = new THREE.WebGLRenderer({antialias: true});
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // Turn on VR support
+        renderer.xr.enabled = true;
+
+        // Add canvas to the page
+        document.body.appendChild(renderer.domElement);
+
+        // Add a button to enter/exit vr to the page
+        document.body.appendChild(VRButton.createButton(renderer));
+       
+    </script>
+</body>
+</html>

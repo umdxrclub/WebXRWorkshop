@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XR Club WebXR Tutorial</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+
+        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+        import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
+
+        /* NEW CODE HERE */
+        
+        // Make a new scene
+        let scene = new THREE.Scene();
+        // Set background color of the scene to gray
+        scene.background = new THREE.Color(0x505050);
+
+        // Make a camera. note that far is set to 100, which is better for realworld sized environments
+        let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 1.6, 3);
+        scene.add(camera);
+
+        /* END OF NEW CODE */
+
+        let renderer = new THREE.WebGLRenderer({antialias: true});
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        renderer.xr.enabled = true;
+        
+        document.body.appendChild(renderer.domElement);
+        document.body.appendChild(VRButton.createButton(renderer));
+
+        /* NEW CODE HERE */
+        
+        // Set animation loop
+        renderer.setAnimationLoop(render);
+
+        function render(time) {
+            // Draw everything
+            renderer.render(scene, camera);
+        }
+
+        /* END OF NEW CODE */
+        
+    </script>
+</body>
+</html>
