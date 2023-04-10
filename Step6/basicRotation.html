@@ -54,6 +54,7 @@
         function render(time) {
             // Rotate the cube
             cube.rotation.y = time / 1000;
+            cube.rotation.x = time / 1000;
             renderer.render(scene, camera);
         }
         
